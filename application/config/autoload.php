@@ -19,4 +19,4 @@ $autoload['config'] = array();
 $autoload['language'] = array();
 
 // Carrega as Models
-$autoload['model'] = array('Funcionario_model');
+$autoload['model'] = array('Funcionario_model','Auth_model');

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novo Funcionário</title>
+    <title>Editar Funcionário</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,7 +27,7 @@
 
         h1 {
             text-align: center;
-            color:rgb(61, 111, 177);
+            color:rgb(172, 162, 21);
         }
 
         label {
@@ -47,7 +47,7 @@
 
         button {
             width: 100%;
-            background-color: rgb(61, 111, 177);
+            background-color: rgb(172, 162, 21);
             color: white;
             padding: 12px;
             border: none;
@@ -58,39 +58,38 @@
         }
 
         button:hover {
-            background-color: rgb(43, 96, 165);
+            background-color: rgb(126, 118, 14);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Criar Novo Funcionário</h1>
-        <form action="<?php echo site_url('funcionarios/insert'); ?>" method="POST">
+        <h1>Editar Cadastro de Funcionário</h1>
+        <form action="<?php echo site_url('funcionarios/update'); ?>" method="POST">
+            <input type="hidden" name="id" value="<?php echo $funcionarios->id;?>">
+
             <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
+            <input type="text" id="nome" name="nome" value="<?php echo $funcionarios->nome;?>" required>
 
             <label for="cargo">Cargo:</label>
-            <input type="text" id="cargo" name="cargo" required>
+            <input type="text" id="cargo" name="cargo" value="<?php echo $funcionarios->cargo;?>" required>
 
             <label for="setor">Setor:</label>
-            <input type="text" id="setor" name="setor" required>
+            <input type="text" id="setor" name="setor" value="<?php echo $funcionarios->setor;?>" required>
 
             <label for="cpf">CPF:</label>
-            <input type="text" id="cpf" name="cpf" required>
+            <input type="text" id="cpf" name="cpf" value="<?php echo $funcionarios->cpf;?>" required>
 
             <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" value="<?php echo $funcionarios->email;?>" required>
 
             <label for="telefone">Telefone:</label>
-            <input type="text" id="telefone" name="telefone" required>
-
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
+            <input type="text" id="telefone" name="telefone" value="<?php echo $funcionarios->telefone;?>" required>
 
             <label for="tipo">Tipo:</label>
-            <input type="text" id="tipo" name="tipo" required>
+            <input type="text" id="tipo" name="tipo" value="<?php echo $funcionarios->tipo;?>" required>
 
-            <button type="submit">Salvar Funcionário</button>
+            <button type="submit">Salvar Edição</button>
         </form>
     </div>
 </body>

@@ -19,12 +19,12 @@
 
         h1 {
             text-align: center;
-            color: #4CAF50;
+            color: rgb(61, 111, 177);
             margin-bottom: 30px;
         }
 
         .button {
-            background-color: #4CAF50;
+            background-color:rgb(61, 111, 177);
             color: white;
             padding: 10px 20px;
             text-decoration: none;
@@ -36,7 +36,7 @@
         }
 
         .button:hover {
-            background-color: #45a049;
+            background-color: rgb(42, 85, 141);
         }
 
         table {
@@ -52,7 +52,7 @@
         }
 
         th {
-            background-color: #4CAF50;
+            background-color: rgb(61, 111, 177);
             color: white;
         }
 
@@ -102,7 +102,9 @@
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
+                <th>Setor</th>
                 <th>Email</th>
+                <th>Telefone</th>
                 <th>Cargo</th>
                 <th>Ações</th>
             </tr>
@@ -112,11 +114,13 @@
             <tr>
                 <td><?php echo $funcionario->id; ?></td>
                 <td><?php echo $funcionario->nome; ?></td>
+                <td><?php echo $funcionario->setor; ?></td>
                 <td><?php echo $funcionario->email; ?></td>
+                <td><?php echo $funcionario->telefone; ?></td>
                 <td><?php echo $funcionario->cargo; ?></td>
                 <td class="actions">
-                    <a href="#">Editar</a>
-                    <a href="#" class="delete">Deletar</a>
+                    <a href="<?php echo site_url('funcionarios/edit/'.$funcionario->id); ?>">Editar</a>
+                    <a href="<?php echo site_url('funcionarios/delete/'.$funcionario->id); ?>" class="delete">Deletar</a>
                 </td>
             </tr>
             <?php endforeach; ?>
