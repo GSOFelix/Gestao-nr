@@ -1,130 +1,125 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Funcionários</title>
-    <style>
-        body, h1, table, th, td {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-        }
-
-        body {
-            background-color: #f4f7fc;
-            color: #333;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: rgb(61, 111, 177);
-            margin-bottom: 30px;
-        }
-
-        .button {
-            background-color:rgb(61, 111, 177);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 16px;
-            margin-bottom: 20px;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: rgb(42, 85, 141);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 30px;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background-color: rgb(61, 111, 177);
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        .actions {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .actions a {
-            padding: 6px 12px;
-            text-decoration: none;
-            background-color: #2196F3;
-            color: white;
-            border-radius: 5px;
-            margin: 0 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .actions a:hover {
-            background-color: #1976D2;
-        }
-
-        .actions .delete {
-            background-color: #f44336;
-        }
-
-        .actions .delete:hover {
-            background-color: #e53935;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Funcionários</title>
 </head>
+
 <body>
-    <h1>Lista de Funcionários</h1>
+  <!-- Seção Funcionários -->
+  <div id="funcionarios" class="conteudo">
+    <h1>Funcionários</h1>
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalFuncionario">
+      <i class="bi bi-plus-circle"></i> Adicionar Funcionário
+    </button>
 
-    <a href="<?php echo site_url('funcionarios/create'); ?>" class="button">Adicionar Novo Funcionário</a>
-
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Setor</th>
-                <th>Email</th>
-                <th>Telefone</th>
-                <th>Cargo</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($funcionarios as $funcionario): ?>
-            <tr>
-                <td><?php echo $funcionario->id; ?></td>
-                <td><?php echo $funcionario->nome; ?></td>
-                <td><?php echo $funcionario->setor; ?></td>
-                <td><?php echo $funcionario->email; ?></td>
-                <td><?php echo $funcionario->telefone; ?></td>
-                <td><?php echo $funcionario->cargo; ?></td>
-                <td class="actions">
-                    <a href="<?php echo site_url('funcionarios/edit/'.$funcionario->id); ?>">Editar</a>
-                    <a href="<?php echo site_url('funcionarios/delete/'.$funcionario->id); ?>" class="delete">Deletar</a>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
+    <!-- Tabela de Funcionários (exemplo) -->
+    <table class="table table-dark table-hover">
+      <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Setor</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Cargo</th>
+            <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($funcionarios as $funcionario): ?>
+        <tr>
+          <td><?= $funcionario->nome; ?></td>
+          <td><?= $funcionario->setor; ?></td>
+          <td><?= $funcionario->email; ?></td>
+          <td><?= $funcionario->telefone; ?></td>
+          <td><?= $funcionario->cargo; ?></td>
+          <td>
+            <a class="btn btn-warning btn-sm" href="<?= site_url('funcionarios/edit/'.$funcionario->id); ?>">
+              <i class="bi bi-pencil"></i> Editar
+            </a>
+            <a  class="btn btn-danger btn-sm" href="<?php echo site_url('funcionarios/delete/'.$funcionario->id); ?>" >
+              <i class="bi bi-trash"></i> Deletar
+            </a>
+          </td>
+        </tr>
+        
+        <?php endforeach; ?>
+      </tbody>
     </table>
+
+    <!-- Modal de Adicionar Funcionário -->
+    <div class="modal fade" id="modalFuncionario" tabindex="-1" aria-labelledby="modalFuncionarioLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalFuncionarioLabel">
+              Adicionar Funcionário
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="<?= site_url('funcionarios/insert'); ?>" method="POST">
+
+              <div class="mb-3">
+                <label for="nomeFuncionario" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" required />
+              </div>
+              <div class="mb-3">
+                <label for="cargoFuncionario" class="form-label">Cargo</label>
+                <input type="text" class="form-control" id="cargo" name="cargo" required />
+              </div>
+
+              <div class="mb-3">
+                <label for="setorFuncionario" class="form-label">Setor</label>
+                <input type="text" class="form-control" id="setor" name="setor" required />
+              </div>
+
+              <div class="mb-3">
+                <label for="cpfFuncionario" class="form-label">CPF</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" required />
+              </div>
+
+              <div class="mb-3">
+                <label for="emailFuncionario" class="form-label">E-mail</label>
+                <input type="text" class="form-control" id="email" name="email" required />
+              </div>
+
+              <div class="mb-3">
+                <label for="telefoneFuncionario" class="form-label">Telefone</label>
+                <input type="text" class="form-control" id="telefone" name="telefone" required />
+              </div>
+
+              <div class="mb-3">
+                <label for="senhaFuncionario" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="senha" name="senha" required />
+              </div>
+
+              <div class="mb-3">
+                <label for="tipo" class="form-label">Tipo de Usuário</label>
+                <select id="tipo" name="tipo" class="form-select" required>
+                  <option value="comum">Comum</option>
+                  <option value="gestor">Gestor</option>
+                </select>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Cancelar
+                </button>
+                <button type="submit" class="btn btn-primary">
+                  Salvar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

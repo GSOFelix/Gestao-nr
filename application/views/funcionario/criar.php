@@ -36,7 +36,7 @@
             margin-top: 10px;
         }
 
-        input {
+        input,select {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
@@ -88,7 +88,11 @@
             <input type="password" id="senha" name="senha" required>
 
             <label for="tipo">Tipo:</label>
-            <input type="text" id="tipo" name="tipo" required>
+            
+            <select id="tipo" name="tipo" required>
+                <option value="comum">Comum</option>
+                <option value="gestor">Gestor</option>  
+            </select>
 
             <button type="submit">Salvar Funcionário</button>
         </form>
