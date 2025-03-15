@@ -21,7 +21,7 @@
   <!-- Navbar Superior -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="<?php echo site_url('home'); ?>">Minha Escola</a>
+      <a class="navbar-brand" href="<?php echo site_url('menu'); ?>">Minha Escola</a>
     </div>
   </nav>
 
@@ -31,7 +31,7 @@
       <nav class="col-12 col-md-2 bg-dark sidebar">
         <ul class="nav flex-column text-white p-3">
           <li class="nav-item mb-2">
-            <a class="nav-link text-white" href="<?php echo site_url('home'); ?>">
+            <a class="nav-link text-white" href="<?php echo site_url('welcome'); ?>">
               <i class="bi bi-house-door-fill"></i> Home
             </a>
           </li>
@@ -43,6 +43,12 @@
           <li class="nav-item mb-2">
             <a class="nav-link text-white" href="<?php echo site_url('treinamentos'); ?>">
               <i class="bi bi-book-fill"></i> Treinamentos
+            </a>
+          </li>
+
+          <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="<?php echo site_url('logout'); ?>">
+              <i class="bi bi-door-open"></i> Sair
             </a>
           </li>
         </ul>

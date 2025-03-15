@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require_once(APPPATH . 'controllers/Authorize_controller.php');
 
 class Funcionarios_controller extends Authorize_controller
 {
@@ -48,7 +49,7 @@ class Funcionarios_controller extends Authorize_controller
     }
 
     public function update(){
-        /*$id = $this->input->post('id');
+        $id = $this->input->post('id');
         $nome = $this->input->post('nome');
         $cargo = $this->input->post('cargo');
         $setor = $this->input->post('setor');
@@ -66,9 +67,7 @@ class Funcionarios_controller extends Authorize_controller
             'email' => $email,
             'telefone' => $telefone,
             'tipo' => $tipo
-        );*/
-
-        $data = $this->input->post();
+        );
 
         $this->Funcionario_model->update($id,$data);
         

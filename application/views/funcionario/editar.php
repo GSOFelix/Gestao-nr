@@ -18,7 +18,7 @@
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       max-width: 600px;
-      margin: 50px auto;
+      
       color: white;
     }
 
@@ -62,6 +62,11 @@
 </head>
 
 <body>
+
+    <a href="<?= site_url('funcionarios'); ?>" class="btn btn-secondary">
+      <i class="bi bi-arrow-left"></i> Voltar
+    </a>
+
   <div class="container">
     <h1>Editar Cadastro de Funcionário</h1>
     <form action="<?= site_url('funcionarios/update'); ?>" method="POST">

@@ -22,9 +22,9 @@ class Auth_controller extends CI_Controller
       if(password_verify($usuario['senha'], $usuarioRetornado->senha)){
          
          $dados_session =  array(
-            'id' => $usuarioRetornado['id']
-            'email'=> $usuarioRetornado['email'],
-            'tipo' => $usuarioRetornado['tipo'],
+            'id' => $usuarioRetornado->id,
+            'email'=> $usuarioRetornado->email,
+            'tipo' => $usuarioRetornado->tipo,
             'logged_in' => TRUE
          );
 

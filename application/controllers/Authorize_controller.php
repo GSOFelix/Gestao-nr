@@ -9,7 +9,6 @@ class Authorize_controller extends CI_Controller{
 
 
     private function verificarAcesso(){
-        session_start();
 
         if(!isset($_SESSION['email'])){
             redirect('auth');
@@ -18,8 +17,8 @@ class Authorize_controller extends CI_Controller{
         $acessoRequirido = $this->definirNivelAcesso();
 
         if($acessoRequirido && $_SESSION['tipo'] !== $acessoRequirido){
-            echo "Sem permissão para acessar";
-            return;
+            $conteudo = $this->load->view('acessoNegado', '', true);
+            $this->load->view('menu', ['conteudo' => $conteudo]);
         }
     }
 
