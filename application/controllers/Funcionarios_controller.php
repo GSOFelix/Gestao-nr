@@ -1,8 +1,11 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Funcionarios_controller extends CI_Controller
+class Funcionarios_controller extends Authorize_controller
 {
+    protected function definirNivelAcesso(){
+        return 'gestor';
+    }
 
     public function index()
     {
@@ -15,6 +18,7 @@ class Funcionarios_controller extends CI_Controller
 
     public function create()
     {
+
         return $this->load->view('funcionario/criar');
     }
 
@@ -31,6 +35,7 @@ class Funcionarios_controller extends CI_Controller
 
     public function edit($id)
     {
+        
         $data['funcionarios'] = $this->Funcionario_model->get_by_id($id);
 
         if(!$data['funcionarios']){
@@ -43,7 +48,7 @@ class Funcionarios_controller extends CI_Controller
     }
 
     public function update(){
-        $id = $this->input->post('id');
+        /*$id = $this->input->post('id');
         $nome = $this->input->post('nome');
         $cargo = $this->input->post('cargo');
         $setor = $this->input->post('setor');
@@ -61,7 +66,9 @@ class Funcionarios_controller extends CI_Controller
             'email' => $email,
             'telefone' => $telefone,
             'tipo' => $tipo
-        );
+        );*/
+
+        $data = $this->input->post();
 
         $this->Funcionario_model->update($id,$data);
         
