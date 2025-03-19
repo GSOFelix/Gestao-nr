@@ -7,14 +7,18 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['welcome'] = 'Welcome';
 
-// Ao digitar a url com /funcionarios ele invoca a controller com o método index
-$route['funcionarios'] = 'Funcionarios_controller/index';
+// ROTAS DE FUNCIONARIOS
+$route['funcionarios']['GET'] = 'Funcionarios_controller/index';
 $route['funcionarios/insert'] = 'Funcionarios_controller/insert';
-$route['funcionarios/update'] = 'Funcionarios_controller/update';
-$route['funcionarios/edit/(:num)'] = 'Funcionarios_controller/edit/$1';
-$route['funcionarios/delete/(:num)'] = 'Funcionarios_controller/delete/$1';
+$route['funcionarios/edit']['POST'] = 'Funcionarios_controller/update';
+$route['funcionarios/edit']['GET'] = 'Funcionarios_controller/edit';
+$route['funcionarios/delete'] = 'Funcionarios_controller/delete';
+
+// ROTA DO MENU
 $route['menu'] = 'Menu_controller/index';
-$route['logout'] = 'Menu_controller/logout';
+
+// ROTAS DE AUTENTICAÇÃO
 $route['auth'] = 'Auth_controller';
 $route['auth/login'] = 'Auth_controller/login';
+$route['logout'] = 'Menu_controller/logout';
 

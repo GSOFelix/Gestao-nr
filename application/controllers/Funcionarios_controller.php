@@ -4,24 +4,25 @@ require_once(APPPATH . 'controllers/Authorize_controller.php');
 
 class Funcionarios_controller extends Authorize_controller
 {
-    protected function definirNivelAcesso(){
+    protected function definirNivelAcesso()
+    {
         return 'gestor';
     }
 
     public function index()
     {
-        $data['funcionarios'] = $this->Funcionario_model->get_all();
+        $data['funcionarios'] = $this->funcionario->get_all();
         
         $conteudo = $this->load->view('funcionario/index', $data,true);
 
         $this->load->view('menu',['conteudo' => $conteudo]);
     }
 
-    public function create()
+    /*public function create()
     {
 
         return $this->load->view('funcionario/criar');
-    }
+    }*/
 
     public function insert()
     {
@@ -29,15 +30,16 @@ class Funcionarios_controller extends Authorize_controller
 
         $novoFuncionario['senha'] = password_hash($novoFuncionario['senha'],PASSWORD_DEFAULT);
 
-        $this->Funcionario_model->insert($novoFuncionario);
+        $this->funcionario->insert($novoFuncionario);
 
         redirect('funcionarios');
     }
 
-    public function edit($id)
+    public function edit()
     {
-        
-        $data['funcionarios'] = $this->Funcionario_model->get_by_id($id);
+        $funcionarioId = $this->input->get('id');
+
+        $data['funcionarios'] = $this->funcionario->get_by_id($funcionarioId);
 
         if(!$data['funcionarios']){
             show_404(); 
@@ -48,41 +50,29 @@ class Funcionarios_controller extends Authorize_controller
         $this->load->view('menu',['conteudo' => $conteudo]);
     }
 
-    public function update(){
-        $id = $this->input->post('id');
-        $nome = $this->input->post('nome');
-        $cargo = $this->input->post('cargo');
-        $setor = $this->input->post('setor');
-        $cpf = $this->input->post('cpf');
-        $email = $this->input->post('email');
-        $telefone = $this->input->post('telefone');
-        $tipo = $this->input->post('tipo');
+    public function update()
+    {
+       $id = $this->input->post('id');
 
-        
-        $data = array(
-            'nome' => $nome,
-            'cargo' => $cargo,
-            'setor' => $setor,
-            'cpf' => $cpf,
-            'email' => $email,
-            'telefone' => $telefone,
-            'tipo' => $tipo
-        );
+       $data = $this->input->post(
+        array('nome', 'cargo', 'setor', 'cpf', 'email', 'telefone', 'tipo'));
 
-        $this->Funcionario_model->update($id,$data);
+       $this->funcionario->update($id,$data);
         
         redirect('funcionarios');
     }
 
-    public function delete($id)
+    public function delete()
     {
-        $data['funcionario'] = $this->Funcionario_model->get_by_id($id);
+        $id = $this->input->post('id');
+        
+        $data['funcionario'] = $this->funcionario->get_by_id($id);
 
         if(!$data['funcionario']){
             show_404(); 
         }
 
-        $this->Funcionario_model->delete($id);
+        $this->funcionario->delete($id);
 
         redirect('funcionarios');
     }

@@ -69,7 +69,8 @@
 
   <div class="container">
     <h1>Editar Cadastro de Funcionário</h1>
-    <form action="<?= site_url('funcionarios/update'); ?>" method="POST">
+    
+    <form method="POST">
       <input type="hidden" name="id" value="<?= $funcionarios->id; ?>">
 
       <label for="nome">Nome:</label>
@@ -91,6 +92,7 @@
       <input type="text" id="telefone" name="telefone" value="<?= $funcionarios->telefone; ?>" required>
 
       <label for="tipo">Tipo:</label>
+      
       <select id="tipo" name="tipo" required>
         <option value="comum" <?= ($funcionarios->tipo == 'comum') ? 'selected' : ''; ?>>Comum</option>
         <option value="gestor" <?= ($funcionarios->tipo == 'gestor') ? 'selected' : ''; ?>>Gestor</option>

@@ -13,7 +13,7 @@ class Auth_controller extends CI_Controller
 
       $usuario = $this->input->post(); 
       
-      $usuarioRetornado = $this->Auth_model->get_funcionario_by_email($usuario['email']);
+      $usuarioRetornado = $this->auth->get_funcionario_by_email($usuario['email']);
 
       if(!$usuarioRetornado){
        show_404();

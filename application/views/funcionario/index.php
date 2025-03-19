@@ -36,12 +36,18 @@
           <td><?= $funcionario->telefone; ?></td>
           <td><?= $funcionario->cargo; ?></td>
           <td>
-            <a class="btn btn-warning btn-sm" href="<?= site_url('funcionarios/edit/'.$funcionario->id); ?>">
+
+            <a class="btn btn-warning btn-sm" href="<?= 'funcionarios/edit?id='.$funcionario->id; ?>">
               <i class="bi bi-pencil"></i> Editar
             </a>
-            <a  class="btn btn-danger btn-sm" href="<?php echo site_url('funcionarios/delete/'.$funcionario->id); ?>" >
-              <i class="bi bi-trash"></i> Deletar
-            </a>
+
+            <form action="<?= 'funcionarios/delete'?>" method="POST" style="display: inline;">
+              <input type="hidden" name="id" value="<?= $funcionario->id ?>">
+              <button type="submit" class="btn btn-danger btn-sm">
+                <i class="bi bi-trash"></i> Deletar
+              </button>
+            </form>
+            
           </td>
         </tr>
         
