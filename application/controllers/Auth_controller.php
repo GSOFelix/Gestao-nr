@@ -16,7 +16,8 @@ class Auth_controller extends CI_Controller
       $usuarioRetornado = $this->auth->get_funcionario_by_email($usuario['email']);
 
       if(!$usuarioRetornado){
-       show_404();
+         $this->session->set_flashdata('message', 'Usuario não encontrado!');
+         redirect('auth');
       }
 
       if(password_verify($usuario['senha'], $usuarioRetornado->senha)){

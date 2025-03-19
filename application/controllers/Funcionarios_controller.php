@@ -18,11 +18,6 @@ class Funcionarios_controller extends Authorize_controller
         $this->load->view('menu',['conteudo' => $conteudo]);
     }
 
-    /*public function create()
-    {
-
-        return $this->load->view('funcionario/criar');
-    }*/
 
     public function insert()
     {
@@ -31,7 +26,7 @@ class Funcionarios_controller extends Authorize_controller
         $novoFuncionario['senha'] = password_hash($novoFuncionario['senha'],PASSWORD_DEFAULT);
 
         $this->funcionario->insert($novoFuncionario);
-        
+
         $this->session->set_flashdata('success_message', 'Funcionário cadastrado com sucesso!');
 
         redirect('funcionarios');
