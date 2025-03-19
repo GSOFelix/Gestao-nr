@@ -31,6 +31,8 @@ class Funcionarios_controller extends Authorize_controller
         $novoFuncionario['senha'] = password_hash($novoFuncionario['senha'],PASSWORD_DEFAULT);
 
         $this->funcionario->insert($novoFuncionario);
+        
+        $this->session->set_flashdata('success_message', 'Funcionário cadastrado com sucesso!');
 
         redirect('funcionarios');
     }

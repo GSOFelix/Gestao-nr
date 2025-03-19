@@ -58,9 +58,9 @@
 </head>
 <body>
 
-        <div class="titulo-container">
-            <h1 class= "text-light">Gestão de Treinamentos de Segurança</h1>
-        </div>
+    <div class="titulo-container">
+        <h1 class= "text-light">Gestão de Treinamentos de Segurança</h1>
+    </div>
 
     <div class="login-container">
 
@@ -75,10 +75,20 @@
                 <label for="senha" class="text-light">Senha</label>
                 <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" required>
             </div>
+            
+
             <button type="submit" class="btn btn-login">Entrar</button>
+
+            <?php if($this->session->flashdata('message')): ?>
+            <div class="alert alert-danger mt-3">
+                <?= $this->session->flashdata('message'); ?>
+            </div>
+            <?php endif; ?>
         </form>
 
     </div>
+
+    
 
 </body>
 </html>

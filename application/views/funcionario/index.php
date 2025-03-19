@@ -125,7 +125,18 @@
       </div>
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <?php if($this->session->flashdata('success_message')): ?>
+    <script>
+        Swal.fire({
+            title: "<?= $this->session->flashdata('success_message'); ?>",
+            icon: "success",
+            draggable: true,
+            confirmButtonColor: '#172387'
+        });
+    </script>
+<?php endif; ?>
 </body>
 
 </html>

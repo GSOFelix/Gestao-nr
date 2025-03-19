@@ -34,7 +34,7 @@ class Auth_controller extends CI_Controller
 
 
       }else {
-         $this->session->set_flashdata('error', 'E-mail ou senha incorretos!');
+         $this->session->set_flashdata('message', 'E-mail ou senha incorretos!');
          redirect('auth');
       }
    }
