@@ -13,9 +13,8 @@ class Funcionarios_controller extends Authorize
     {
         $data['funcionarios'] = $this->funcionario->get_all();
         
-        $conteudo = $this->load->view('funcionario/index', $data,true);
-
-        $this->load->view('menu',['conteudo' => $conteudo]);
+        $this->load->view('menu');
+        $this->load->view('funcionario/index', $data);
     }
 
 
@@ -42,9 +41,8 @@ class Funcionarios_controller extends Authorize
             show_404(); 
         }
 
-        $conteudo = $this->load->view('funcionario/editar',$data,true);
-
-        $this->load->view('menu',['conteudo' => $conteudo]);
+        $this->load->view('menu');
+        $this->load->view('funcionario/editar',$data);
     }
 
     public function update()
@@ -71,7 +69,7 @@ class Funcionarios_controller extends Authorize
         
         if($data['funcionario']->id == $_SESSION['id']){
             $this->session->set_flashdata("error","Você não pode excluir sua própria conta.");
-            return;
+            redirect('funcionarios');
         }
 
         $this->funcionario->delete($id);

@@ -27,11 +27,14 @@ class Auth_controller extends CI_Controller
             'email'=> $usuarioRetornado->email,
             'tipo' => $usuarioRetornado->tipo,
             'nome' => $usuarioRetornado->nome,
+            'setor' => $usuarioRetornado->setor,
+            'cargo'=> $usuarioRetornado->cargo,
+            'telefone'=>$usuarioRetornado->telefone
          );
 
          $this->session->set_userdata($dados_session);
 
-         redirect('menu');
+         redirect('perfil');
 
 
       }else {
@@ -39,4 +42,9 @@ class Auth_controller extends CI_Controller
          redirect('auth');
       }
    }
+
+   public function logout(){
+      $this->session->sess_destroy();
+      redirect('auth');
+  }
 }

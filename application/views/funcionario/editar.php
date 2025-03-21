@@ -14,32 +14,32 @@
 
     .container {
       background-color: #212529;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      max-width: 600px;
-      
-      color: white;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      max-width: 100%;
+      margin: 0 auto;
     }
 
     h1 {
       text-align: center;
       color: #ffc107;
+      margin-bottom: 30px;
     }
 
     label {
       font-weight: bold;
       margin-top: 10px;
+      color: white;
     }
 
     input,
     select {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin-top: 5px;
       margin-bottom: 15px;
       border: 1px solid #495057;
-      border-radius: 5px;
+      border-radius: 8px;
       background-color: #343a40;
       color: white;
     }
@@ -50,7 +50,7 @@
       color: black;
       padding: 12px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
     }
@@ -58,45 +58,104 @@
     button:hover {
       background-color: #e0a800;
     }
+
+    .btn-back {
+      background-color: #6c757d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .btn-back:hover {
+      background-color: #5a6268;
+    }
+
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .form-column {
+      flex: 1;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        flex-direction: column;
+      }
+
+      .form-column {
+        margin-bottom: 15px;
+      }
+
+      button {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-    <a href="<?= site_url('funcionarios'); ?>" class="btn btn-secondary">
+  <div class="container">
+    <a href="<?= site_url('funcionarios'); ?>" class="btn-back">
       <i class="bi bi-arrow-left"></i> Voltar
     </a>
 
-  <div class="container">
     <h1>Editar Cadastro de Funcionário</h1>
     
     <form method="POST">
       <input type="hidden" name="id" value="<?= $funcionarios->id; ?>">
 
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" value="<?= $funcionarios->nome; ?>" required>
+      <div class="form-row">
+        <div class="form-column">
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" name="nome" value="<?= $funcionarios->nome; ?>" required>
+        </div>
 
-      <label for="cargo">Cargo:</label>
-      <input type="text" id="cargo" name="cargo" value="<?= $funcionarios->cargo; ?>" required>
+        <div class="form-column">
+          <label for="cargo">Cargo:</label>
+          <input type="text" id="cargo" name="cargo" value="<?= $funcionarios->cargo; ?>" required>
+        </div>
+      </div>
 
-      <label for="setor">Setor:</label>
-      <input type="text" id="setor" name="setor" value="<?= $funcionarios->setor; ?>" required>
+      <div class="form-row">
+        <div class="form-column">
+          <label for="setor">Setor:</label>
+          <input type="text" id="setor" name="setor" value="<?= $funcionarios->setor; ?>" required>
+        </div>
 
-      <label for="cpf">CPF:</label>
-      <input type="text" id="cpf" name="cpf" value="<?= $funcionarios->cpf; ?>" required>
+        <div class="form-column">
+          <label for="cpf">CPF:</label>
+          <input type="text" id="cpf" name="cpf" value="<?= $funcionarios->cpf; ?>" required>
+        </div>
+      </div>
 
-      <label for="email">E-mail:</label>
-      <input type="email" id="email" name="email" value="<?= $funcionarios->email; ?>" required>
+      <div class="form-row">
+        <div class="form-column">
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="email" value="<?= $funcionarios->email; ?>" required>
+        </div>
 
-      <label for="telefone">Telefone:</label>
-      <input type="text" id="telefone" name="telefone" value="<?= $funcionarios->telefone; ?>" required>
+        <div class="form-column">
+          <label for="telefone">Telefone:</label>
+          <input type="text" id="telefone" name="telefone" value="<?= $funcionarios->telefone; ?>" required>
+        </div>
+      </div>
 
-      <label for="tipo">Tipo:</label>
-      
-      <select id="tipo" name="tipo" required>
-        <option value="comum" <?= ($funcionarios->tipo == 'comum') ? 'selected' : ''; ?>>Comum</option>
-        <option value="gestor" <?= ($funcionarios->tipo == 'gestor') ? 'selected' : ''; ?>>Gestor</option>
-      </select>
+      <div class="form-row">
+        <div class="form-column">
+          <label for="tipo">Tipo:</label>
+          <select id="tipo" name="tipo" required>
+            <option value="comum" <?= ($funcionarios->tipo == 'comum') ? 'selected' : ''; ?>>Comum</option>
+            <option value="gestor" <?= ($funcionarios->tipo == 'gestor') ? 'selected' : ''; ?>>Gestor</option>
+          </select>
+        </div>
+      </div>
 
       <button type="submit">Salvar Edição</button>
     </form>
