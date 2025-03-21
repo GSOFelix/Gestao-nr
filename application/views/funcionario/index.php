@@ -19,22 +19,32 @@
     <table class="table table-dark table-hover">
       <thead>
         <tr>
-            <th>Nome</th>
-            <th>Setor</th>
-            <th>Email</th>
-            <th>Telefone</th>
-            <th>Cargo</th>
-            <th>Ações</th>
+          <th>Nome</th>
+          <th>Setor</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Cargo</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
         <?php foreach ($funcionarios as $funcionario): ?>
         <tr>
-          <td><?= $funcionario->nome; ?></td>
-          <td><?= $funcionario->setor; ?></td>
-          <td><?= $funcionario->email; ?></td>
-          <td><?= $funcionario->telefone; ?></td>
-          <td><?= $funcionario->cargo; ?></td>
+          <td>
+            <?= $funcionario->nome; ?>
+          </td>
+          <td>
+            <?= $funcionario->setor; ?>
+          </td>
+          <td>
+            <?= $funcionario->email; ?>
+          </td>
+          <td>
+            <?= $funcionario->telefone; ?>
+          </td>
+          <td>
+            <?= $funcionario->cargo; ?>
+          </td>
           <td>
 
             <a class="btn btn-warning btn-sm" href="<?= 'funcionarios/edit?id='.$funcionario->id; ?>">
@@ -47,10 +57,10 @@
                 <i class="bi bi-trash"></i> Deletar
               </button>
             </form>
-            
+
           </td>
         </tr>
-        
+
         <?php endforeach; ?>
       </tbody>
     </table>
@@ -67,7 +77,7 @@
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="<?= site_url('funcionarios/insert'); ?>" method="POST">
+            <form action="<?='funcionarios/insert'; ?>" method="POST">
 
               <div class="mb-3">
                 <label for="nomeFuncionario" class="form-label">Nome</label>
@@ -127,16 +137,27 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
   <?php if($this->session->flashdata('success_message')): ?>
-    <script>
-        Swal.fire({
-            title: "<?= $this->session->flashdata('success_message'); ?>",
-            icon: "success",
-            draggable: true,
-            confirmButtonColor: '#172387'
-        });
-    </script>
-<?php endif; ?>
+  <script>
+    Swal.fire({
+      title: "<?= $this->session->flashdata('success_message'); ?>",
+      icon: "success",
+
+    });
+  </script>
+  <?php endif; ?>
+  
+  <?php if($this->session->flashdata('error')): ?>
+  <script>
+    Swal.fire({
+      icon: "error",
+      title: "Atenção"
+      text: <? $this -> session -> flashdata('error'); ?>,
+      confirmButtonColor: '#172387'
+    });
+  </script>
+  <?php endif; ?>
 </body>
 
 </html>

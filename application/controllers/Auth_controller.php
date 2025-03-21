@@ -26,7 +26,7 @@ class Auth_controller extends CI_Controller
             'id' => $usuarioRetornado->id,
             'email'=> $usuarioRetornado->email,
             'tipo' => $usuarioRetornado->tipo,
-            'logged_in' => TRUE
+            'nome' => $usuarioRetornado->nome,
          );
 
          $this->session->set_userdata($dados_session);

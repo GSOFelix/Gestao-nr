@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-require_once(APPPATH . 'controllers/Authorize_controller.php');
+require_once(APPPATH . 'core/Authorize.php');
 
-class Funcionarios_controller extends Authorize_controller
+class Funcionarios_controller extends Authorize
 {
     protected function definirNivelAcesso()
     {
@@ -64,9 +64,14 @@ class Funcionarios_controller extends Authorize_controller
         $id = $this->input->post('id');
         
         $data['funcionario'] = $this->funcionario->get_by_id($id);
-
+        
         if(!$data['funcionario']){
             show_404(); 
+        }
+        
+        if($data['funcionario']->id == $_SESSION['id']){
+            $this->session->set_flashdata("error","Você não pode excluir sua própria conta.");
+            return;
         }
 
         $this->funcionario->delete($id);
