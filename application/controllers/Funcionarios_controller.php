@@ -13,10 +13,8 @@ class Funcionarios_controller extends Authorize
     {
         $data['funcionarios'] = $this->funcionario->get_all();
         
-        $this->load->view('menu');
-        $this->load->view('funcionario/index', $data);
+        $this->template('funcionario/index',$data);
     }
-
 
     public function insert()
     {
@@ -41,19 +39,17 @@ class Funcionarios_controller extends Authorize
             show_404(); 
         }
 
-        $this->load->view('menu');
-        $this->load->view('funcionario/editar',$data);
+        $this->session->set_flashdata("funcionario",$data);
     }
 
     public function update()
     {
-       $id = $this->input->post('id');
-
-       $data = $this->input->post(
+        $id = $this->input->post('id');
+    
+        $data = $this->input->post(
         array('nome', 'cargo', 'setor', 'cpf', 'email', 'telefone', 'tipo'));
-
-       $this->funcionario->update($id,$data);
-        
+        $this->funcionario->update($id,$data);
+        $this->session->set_flashdata("success_message","Usuário editado com sucesso!");
         redirect('funcionarios');
     }
 
@@ -73,9 +69,7 @@ class Funcionarios_controller extends Authorize
         }
 
         $this->funcionario->delete($id);
-
+        $this->session->set_flashdata("success_message","Usuário deletado com sucesso!");
         redirect('funcionarios');
     }
-
-
 }

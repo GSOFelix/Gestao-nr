@@ -87,6 +87,38 @@
         </div>
     </div>
     
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+        });
+
+        
+        <?php if ($this -> session -> flashdata('success_message')): ?>
+        Toast.fire({
+            icon: "success",
+            title: "<?= $this->session->flashdata('success_message'); ?>"
+        });
+        <?php endif; ?>
+
+
+        <?php if ($this -> session -> flashdata('error')): ?>
+
+        Toast.fire({
+            icon: "error",
+            title: "<?= $this->session->flashdata('error'); ?>",
+        });
+        
+        <?php endif; ?>
+    </script>
 </body>
 </html>

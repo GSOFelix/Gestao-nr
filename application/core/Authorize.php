@@ -21,8 +21,16 @@ class Authorize extends CI_Controller{
         //VERIFICA SE O USUARIO TEM O NIVEL DE ACESSO NECESSÁRIO
         if($acessoRequirido && $_SESSION['tipo'] !== $acessoRequirido){
             $data['message'] = "Você não tem permissão para acessar esta página.";
-            redirect('acesso-negado');
+            // RETRONE PARA APAGINA QUE VEIO
+            $this->session->set_flashdata("error","Você não tem permissão para acessar esta página");
+            redirect($this->agent->referrer());
         }
+    }
+
+    //Carrega template 
+    public function template($view , $data=[]){
+        $this->load->view('menu');
+        $this->load->view($view,$data);
     }
 
     // FUNCAO EXCLUSVA DA CLASSE BASE
