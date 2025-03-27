@@ -10,9 +10,6 @@
         body {
             background:rgb(12, 34, 56);
             color: white;
-            height: 100vh;
-            justify-content: center;
-            align-items: center;
             margin: 0;
         }
 

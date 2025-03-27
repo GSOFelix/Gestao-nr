@@ -7,8 +7,17 @@
   <title>Lista de Funcionários</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    
     .conteudo {
       padding: 1rem;
+    }
+    
+    table{
+      border-collapse: separate; /* Necessário para que border-radius funcione */
+      border-spacing: 0;
+      border-radius: 10px; /* Ajuste o valor conforme necessário */
+      overflow: hidden; /* Garante que os cantos fiquem arredondados */
+      border: 1px solid #ddd;
     }
 
     @media (max-width: 768px) {
@@ -117,9 +126,9 @@
                   <i class="bi bi-pencil"></i> Editar
                 </a>
 
-                <form action="<?= 'funcionarios/delete' ?>" method="POST">
+                <form action="<?= 'funcionarios/delete' ?>" method="POST" id="formDelete_<?= $funcionario->id ?>">
                   <input type="hidden" name="id" value="<?= $funcionario->id ?>">
-                  <button type="submit" class="btn btn-danger btn-sm">
+                  <button type="button" class="btn btn-danger btn-sm" onclick="confirmarExclusao(<?= $funcionario->id ?>)">
                     <i class="bi bi-trash"></i> Deletar
                   </button>
                 </form>
@@ -296,6 +305,24 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
+
+    function confirmarExclusao(funcionarioId) {
+      swal.fire({
+        title: "Tem certeza?",
+        text: "Você está prestes a excluir um funcionário!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, excluir!",
+        cancelButtonText: "Cancelar"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.getElementById("formDelete_" + funcionarioId).submit();
+      }
+    });
+    }
+
     const Toast = Swal.mixin({
       toast: true,
       position: "top-end",

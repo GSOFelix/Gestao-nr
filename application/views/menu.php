@@ -9,6 +9,22 @@
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <style>
+    html, body {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer {
+      background-color: #212529;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .content {
+      flex: 1;
+    }
     .sidebar {
       min-height: 100vh;
     }
@@ -67,6 +83,9 @@
       </div>
     </div>
   </nav>
+
+  <!-- Conteúdo principal -->
+  <div class="content">
 
 
   <!-- Scripts do Bootstrap 5 -->

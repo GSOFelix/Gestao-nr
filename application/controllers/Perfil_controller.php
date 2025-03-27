@@ -12,6 +12,7 @@ class Perfil_controller extends CI_Controller {
         
         $this->load->view('menu');
         $this->load->view('perfil/index',$data);
+        $this->load->view('footer');
 
     }
 }

@@ -11,7 +11,6 @@ $route['welcome'] = 'Welcome';
 $route['funcionarios']['GET'] = 'Funcionarios_controller/index';
 $route['funcionarios/insert'] = 'Funcionarios_controller/insert';
 $route['funcionarios/update']['POST'] = 'Funcionarios_controller/update';
-/*$route['funcionarios/edit']['GET'] = 'Funcionarios_controller/edit';*/
 $route['funcionarios/delete'] = 'Funcionarios_controller/delete';
 
 // ROTAS DE AUTENTICAÇÃO

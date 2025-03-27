@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,7 @@
         body {
             background: rgb(104, 100, 100);
             height: 100vh;
-            display: flex;
+             
             justify-content: center;
             align-items: center;
             flex-direction: column;
@@ -32,7 +33,7 @@
 
         /* Estilo para os inputs */
         .form-control {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgb(156, 156, 156);
             border: 1px solid rgba(255, 255, 255, 0.5);
             color: #fff;
         }
@@ -60,14 +61,15 @@
 
         /* Estilos para o conteúdo da página */
         .container {
-        padding: 20px;
-        text-align: center;
-        color: white;
-        width: 100%;
-        max-width: 800px;
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Centraliza horizontalmente */
+            padding: 20px;
+            text-align: center;
+            color: white;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Centraliza horizontalmente */
         }
 
         .content {
@@ -76,7 +78,8 @@
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             margin-bottom: 20px;
-            align-items: center; /* Centraliza horizontalmente */
+            align-items: center;
+            /* Centraliza horizontalmente */
             display: flex;
             flex-direction: column;
         }
@@ -128,8 +131,18 @@
                 font-size: 0.9em;
             }
         }
+        .form-group {
+        text-align: left;
+        }
+
+        .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        }
+
     </style>
 </head>
+
 <body>
 
     <div class="container">
@@ -141,11 +154,13 @@
                 <form method="POST" action="<?= site_url('auth/login'); ?>">
                     <div class="form-group">
                         <label for="email" class="text-light">E-mail</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail"
+                            required>
                     </div>
                     <div class="form-group">
                         <label for="senha" class="text-light">Senha</label>
-                        <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" required>
+                        <input type="password" class="form-control" id="senha" name="senha"
+                            placeholder="Digite sua senha" required>
                     </div>
                     <button type="submit" class="btn btn-login">Entrar</button>
                     <?php if($this->session->flashdata('message')): ?>
@@ -159,4 +174,5 @@
     </div>
 
 </body>
+
 </html>

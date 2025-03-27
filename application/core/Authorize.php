@@ -23,7 +23,7 @@ class Authorize extends CI_Controller{
             $data['message'] = "Você não tem permissão para acessar esta página.";
             // RETRONE PARA APAGINA QUE VEIO
             $this->session->set_flashdata("error","Você não tem permissão para acessar esta página");
-            redirect($this->agent->referrer());
+            redirect('perfil');
         }
     }
 
@@ -31,6 +31,7 @@ class Authorize extends CI_Controller{
     public function template($view , $data=[]){
         $this->load->view('menu');
         $this->load->view($view,$data);
+        $this->load->view('footer');
     }
 
     // FUNCAO EXCLUSVA DA CLASSE BASE
